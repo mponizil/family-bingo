@@ -24,6 +24,10 @@ import {
   PROMPTS
 } from '../data';
 
+import {
+  checkHasBingo
+} from '../utility';
+
 import Square from './Square';
 
 import globalStyles from '../styles/global';
@@ -66,9 +70,19 @@ class BingoBoard extends React.Component {
   constructor() {
     super();
     this.state = {
+      hasBingo: false,
+      showWinner: false,
       showPrompt: false,
       promptSquare: null
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let hasBingo = checkHasBingo(nextProps.board);
+    this.setState({
+      hasBingo: hasBingo,
+      showWinner: (this.state.hasBingo !== hasBingo) ? hasBingo : false
+    });
   }
 
   generateHandlePressSquare(square) {
@@ -117,10 +131,21 @@ class BingoBoard extends React.Component {
     return (
       <View style={{flex: 1}}>
 
-        <Overlay isVisible={this.state.showPrompt}>
+        <Overlay isVisible={this.state.showPrompt && !this.state.showWinner}>
           <View style={styles.modalOverlay}>
             <View style={styles.modalContent}>
               {prompt}
+            </View>
+          </View>
+        </Overlay>
+
+        <Overlay isVisible={this.state.showWinner}>
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <Text>WINNER WINNER WINNER!!</Text>
+              <TouchableOpacity onPress={() => this.setState({ showWinner: false })}>
+                <Text>Done</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </Overlay>
