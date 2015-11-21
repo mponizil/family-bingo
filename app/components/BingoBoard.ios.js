@@ -16,7 +16,8 @@ import {
 } from 'react-redux/native';
 
 import {
-  markSquare
+  markSquare,
+  unmarkSquare
 } from '../actions';
 
 import {
@@ -30,28 +31,31 @@ import globalStyles from '../styles/global';
 class Prompt extends React.Component {
 
   render() {
-    var content;
-    if (this.props.prompt) {
-      let index = _.random(0, PROMPTS.length - 1);
-      content = (
-        <View>
-          <Text>{this.props.user.name}</Text>
-          <Text>{PROMPTS[index]}</Text>
-          <TouchableOpacity onPress={this.props.onDone}>
-            <Text>Done!</Text>
-          </TouchableOpacity>
-        </View>
+    let index = _.random(0, PROMPTS.length - 1);
+    let action;
+    if (this.props.square.isMarked) {
+      action = (
+        <TouchableOpacity onPress={this.props.onUnmark}>
+          <Text>Unmark</Text>
+        </TouchableOpacity>
+      );
+    } else {
+      action = (
+        <TouchableOpacity onPress={this.props.onMarkDone}>
+          <Text>Done!</Text>
+        </TouchableOpacity>
       );
     }
 
     return (
-      <Overlay isVisible={!!this.props.prompt}>
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-            {content}
-          </View>
-        </View>
-      </Overlay>
+      <View>
+        <Text>{this.props.user.name}</Text>
+        <Text>{PROMPTS[index]}</Text>
+        <TouchableOpacity onPress={this.props.onCancel}>
+          <Text>Cancel</Text>
+        </TouchableOpacity>
+        {action}
+      </View>
     );
   }
 
@@ -62,14 +66,16 @@ class BingoBoard extends React.Component {
   constructor() {
     super();
     this.state = {
-      prompt: false
+      showPrompt: false,
+      promptSquare: null
     };
   }
 
   generateHandlePressSquare(square) {
     return () => {
       this.setState({
-        prompt: square
+        showPrompt: true,
+        promptSquare: square
       });
     }
   }
@@ -77,26 +83,51 @@ class BingoBoard extends React.Component {
   handleMarkSquare() {
     this.props.markSquare({
       user: this.props.user,
-      square: this.state.prompt
+      square: this.state.promptSquare
     });
     this.setState({
-      prompt: false
+      showPrompt: false
+    });
+  }
+
+  handleUnmarkSquare() {
+    this.props.unmarkSquare({
+      user: this.props.user,
+      square: this.state.promptSquare
+    });
+    this.setState({
+      showPrompt: false
     });
   }
 
   render() {
+    let prompt;
+    if (this.state.showPrompt) {
+      prompt = (
+        <Prompt
+          square={this.state.promptSquare}
+          user={this.props.users[this.state.promptSquare.userId]}
+          onCancel={() => this.setState({ showPrompt: false })}
+          onUnmark={this.handleUnmarkSquare.bind(this)}
+          onMarkDone={this.handleMarkSquare.bind(this)}
+        />
+      );
+    }
+
     return (
       <View style={{flex: 1}}>
 
-        <Prompt
-          prompt={this.state.prompt}
-          user={this.props.users[this.state.prompt.userId]}
-          onDone={this.handleMarkSquare.bind(this)}
-        />
+        <Overlay isVisible={this.state.showPrompt}>
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              {prompt}
+            </View>
+          </View>
+        </Overlay>
 
         <View style={styles.navigationBar}>
           <TouchableOpacity onPress={this.props.navigator.pop} style={styles.navigationBarItem}>
-            <Text>&lt; Back</Text>
+            <Text style={styles.navigationBarItemText}>&lt; Back</Text>
           </TouchableOpacity>
           <Text style={styles.navigationBarHeading}>
             {this.props.user.name}'s Board
@@ -154,5 +185,6 @@ export default connect((state, ownProps) => {
     board: state.boardsByUser[ownProps.user.id]
   };
 }, {
-  markSquare
+  markSquare,
+  unmarkSquare
 })(BingoBoard);

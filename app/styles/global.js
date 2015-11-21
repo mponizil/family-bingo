@@ -1,7 +1,7 @@
 export default {
   navigationBar: {
     backgroundColor: '#e2e2e2',
-    padding: 10,
+    padding: 5,
     borderColor: '#cbcbcb',
     borderStyle: 'solid',
     borderBottomWidth: 1,
@@ -13,9 +13,12 @@ export default {
     width: 80,
     flexDirection: 'row'
   },
+  navigationBarItemText: {
+    fontSize: 10
+  },
   navigationBarHeading: {
     flex: 1,
-    fontSize: 18,
+    fontSize: 14,
     textAlign: 'center'
   },
 
@@ -24,7 +27,7 @@ export default {
   },
 
   instructions: {
-    padding: 10,
+    padding: 5,
     backgroundColor: '#e2e2e2',
     borderColor: '#cbcbcb',
     borderStyle: 'solid',
