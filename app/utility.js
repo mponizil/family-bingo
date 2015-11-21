@@ -46,8 +46,8 @@ export function checkHasBingo(board) {
 
   // Diagonal right to left
   function checkDiagonalR2L() {
-    for (let i = 4; i >= 0; i--) {
-      if (!board[i * 5 + i].isMarked) {
+    for (let i = 0; i < 5; i++) {
+      if (!board[(i + 1) * 5 - (i + 1)].isMarked) {
         return false;
       }
     }

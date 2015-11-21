@@ -37,6 +37,7 @@ class Prompt extends React.Component {
   render() {
     let index = _.random(0, PROMPTS.length - 1);
     let action;
+
     if (this.props.square.isMarked) {
       action = (
         <TouchableOpacity onPress={this.props.onUnmark}>
