@@ -4,15 +4,21 @@
  */
 'use strict';
 
+import _ from 'underscore';
 import React from 'react-native';
+import {
+  Provider
+} from 'react-redux/native';
 
 import SignIn from './app/components/SignIn';
 
 let {
   AppRegistry,
-  StyleSheet,
   Navigator,
 } = React;
+
+import configureStore from './app/configureStore';
+let store = configureStore();
 
 class FamilyBingo extends React.Component {
 
@@ -29,19 +35,21 @@ class FamilyBingo extends React.Component {
 
   render() {
     return (
-      <Navigator
-        sceneStyle={{flex: 1, backgroundColor: '#ffffff'}}
-        renderScene={this.renderScene.bind(this)}
-        configureScene={(route) => route.transition || Navigator.SceneConfigs.FloatFromRight}
-        initialRoute={{
-          component: SignIn
-        }}
-      />
+      <Provider store={store}>
+        {() =>
+          <Navigator
+            sceneStyle={{flex: 1, backgroundColor: '#f5f5f5'}}
+            renderScene={this.renderScene.bind(this)}
+            configureScene={(route) => route.transition || Navigator.SceneConfigs.FloatFromRight}
+            initialRoute={{
+              component: SignIn
+            }}
+          />
+        }
+      </Provider>
     );
   }
 
 }
-
-let styles = StyleSheet.create({});
 
 AppRegistry.registerComponent('FamilyBingo', () => FamilyBingo);
