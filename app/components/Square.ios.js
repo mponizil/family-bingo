@@ -31,7 +31,10 @@ class Square extends React.Component {
       >
         <Image
           source={{uri: this.props.data.photo}}
-          style={styles.photo}
+          style={{
+            width: this.props.width || 200,
+            height: this.props.height || 200
+          }}
         />
         <Text style={styles.text}>{this.props.data.name}</Text>
         {mark}

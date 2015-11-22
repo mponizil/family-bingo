@@ -33,7 +33,7 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.screen}>
 
         <ScrollView style={{flex: 1}} contentContainerStyle={styles.scrollViewContainer}>
           <View style={styles.grid}>

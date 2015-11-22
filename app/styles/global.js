@@ -1,4 +1,10 @@
 export default {
+  screen: {
+    flex: 1,
+    paddingTop: 20,
+    justifyContent: 'space-between'
+  },
+
   navigationBar: {
     backgroundColor: '#e2e2e2',
     padding: 5,
@@ -10,15 +16,15 @@ export default {
     alignItems: 'center'
   },
   navigationBarItem: {
-    width: 80,
+    width: 200,
     flexDirection: 'row'
   },
   navigationBarItemText: {
-    fontSize: 10
+    fontSize: 14
   },
   navigationBarHeading: {
     flex: 1,
-    fontSize: 14,
+    fontSize: 24,
     textAlign: 'center'
   },
 
@@ -27,7 +33,7 @@ export default {
   },
 
   instructions: {
-    padding: 5,
+    padding: 15,
     backgroundColor: '#e2e2e2',
     borderColor: '#cbcbcb',
     borderStyle: 'solid',
@@ -35,13 +41,13 @@ export default {
   },
   instructionsText: {
     color: '#181818',
-    fontSize: 10
+    fontSize: 18
   },
 
   text: {
     flex: 1,
     color: '#000000',
-    fontSize: 12,
+    fontSize: 18,
     textAlign: 'center'
   },
 
@@ -75,10 +81,17 @@ export default {
   },
 
   photo: {
-    width: 80,
-    height: 80
+    width: 150,
+    height: 150
   },
 
+  modal: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  },
   modalOverlay: {
     flex: 1,
     justifyContent: 'center',

@@ -132,69 +132,75 @@ class BingoBoard extends React.Component {
     return (
       <View style={{flex: 1}}>
 
-        <Overlay isVisible={this.state.showPrompt && !this.state.showWinner}>
-          <View style={styles.modalOverlay}>
-            <View style={styles.modalContent}>
-              {prompt}
-            </View>
-          </View>
-        </Overlay>
-
-        <Overlay isVisible={this.state.showWinner}>
-          <View style={styles.modalOverlay}>
-            <View style={styles.modalContent}>
-              <Text>WINNER WINNER WINNER!!</Text>
-              <TouchableOpacity onPress={() => this.setState({ showWinner: false })}>
-                <Text>Done</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Overlay>
-
-        <View style={styles.navigationBar}>
-          <TouchableOpacity onPress={this.props.navigator.pop} style={styles.navigationBarItem}>
-            <Text style={styles.navigationBarItemText}>&lt; Back</Text>
-          </TouchableOpacity>
-          <Text style={styles.navigationBarHeading}>
-            {this.props.user.name}'s Board
-          </Text>
-          <View style={styles.navigationBarItem}></View>
-        </View>
-
-        <ScrollView style={{flex: 1}} contentContainerStyle={styles.scrollViewContainer}>
-          {_.range(0, 5).map((i) => {
-            return (
-              <View key={i} style={styles.boardRow}>
-                {this.props.board.slice(i * 5, (i + 1) * 5).map((square) => {
-                  var data;
-                  if (square.userId === -1) {
-                    data = {
-                      id: -1,
-                      name: 'Cake',
-                      photo: 'https://i.imgur.com/5KTpjld.png'
-                    }
-                  } else {
-                    data = this.props.users[square.userId];
-                  }
-                  return (
-                    <Square
-                      key={square.userId}
-                      data={data}
-                      isMarked={square.isMarked}
-                      onPress={this.generateHandlePressSquare(square)}
-                      style={styles.boardSquare}
-                    />
-                  );
-                })}
+        <View style={styles.modal}>
+          <Overlay isVisible={this.state.showPrompt && !this.state.showWinner}>
+            <View style={styles.modalOverlay}>
+              <View style={styles.modalContent}>
+                {prompt}
               </View>
-            );
-          })}
-        </ScrollView>
-
-        <View style={styles.instructions}>
-          <Text style={styles.instructionsText}>Instructions</Text>
+            </View>
+          </Overlay>
+          <Overlay isVisible={this.state.showWinner}>
+            <View style={styles.modalOverlay}>
+              <View style={styles.modalContent}>
+                <Text>WINNER WINNER WINNER!!</Text>
+                <TouchableOpacity onPress={() => this.setState({ showWinner: false })}>
+                  <Text>Done</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Overlay>
         </View>
 
+        <View style={styles.screen}>
+
+          <View style={styles.navigationBar}>
+            <TouchableOpacity onPress={this.props.navigator.pop} style={styles.navigationBarItem}>
+              <Text style={styles.navigationBarItemText}>&lt; Back</Text>
+            </TouchableOpacity>
+            <Text style={styles.navigationBarHeading}>
+              {this.props.user.name}'s Board
+            </Text>
+            <View style={styles.navigationBarItem}></View>
+          </View>
+
+          <ScrollView style={{flex: 0}} contentContainerStyle={styles.scrollViewContainer}>
+            {_.range(0, 5).map((i) => {
+              return (
+                <View key={i} style={styles.boardRow}>
+                  {this.props.board.slice(i * 5, (i + 1) * 5).map((square) => {
+                    var data;
+                    if (square.userId === -1) {
+                      data = {
+                        id: -1,
+                        name: 'Cake',
+                        photo: 'https://i.imgur.com/5KTpjld.png'
+                      }
+                    } else {
+                      data = this.props.users[square.userId];
+                    }
+                    return (
+                      <Square
+                        key={square.userId}
+                        data={data}
+                        isMarked={square.isMarked}
+                        width={100}
+                        height={100}
+                        onPress={this.generateHandlePressSquare(square)}
+                        style={styles.boardSquare}
+                      />
+                    );
+                  })}
+                </View>
+              );
+            })}
+          </ScrollView>
+
+          <View style={styles.instructions}>
+            <Text style={styles.instructionsText}>Instructions</Text>
+          </View>
+
+        </View>
       </View>
     );
   }
