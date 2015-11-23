@@ -10,6 +10,7 @@
     "react-native": "^0.14.0",
     "react-native-overlay": "^0.3.0",
     "react-redux": "^3.0.0",
+    "react-timer-mixin": "^0.13.3",
     "redux": "^3.0.4",
     "redux-logger": "^2.0.4",
     "underscore": "^1.8.3"

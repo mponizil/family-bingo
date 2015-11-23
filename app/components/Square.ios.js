@@ -5,8 +5,16 @@ let {
   Image,
   Text,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
 } = React;
+
+// <View
+//   style={{
+//     backgroundColor: 'transparent',
+//     width: this.props.width || 200,
+//     height: this.props.height || 200
+//   }}
+// ></View>
 
 import globalStyles from '../styles/global';
 

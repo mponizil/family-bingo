@@ -86,7 +86,7 @@ class BingoBoard extends React.Component {
       hasBingo: false,
       showWinner: false,
       showPrompt: false,
-      promptSquare: null
+      promptSquare: null,
     };
   }
 
