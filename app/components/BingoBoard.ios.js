@@ -21,7 +21,8 @@ import {
 } from '../actions';
 
 import {
-  PROMPTS
+  PROMPTS,
+  CAKE120
 } from '../data';
 
 import {
@@ -193,7 +194,7 @@ class BingoBoard extends React.Component {
                         data = {
                           id: -1,
                           name: 'Cake',
-                          photo: 'https://i.imgur.com/5KTpjld.png'
+                          photo120: CAKE120
                         }
                       } else {
                         data = this.props.users[square.userId];
@@ -201,8 +202,8 @@ class BingoBoard extends React.Component {
                       return (
                         <Square
                           key={square.userId}
-                          data={data}
-                          isMarked={square.isMarked}
+                          image={square.isMarked ? CAKE120 : data.photo120}
+                          label={data.name}
                           width={120}
                           height={120}
                           onPress={this.generateHandlePressSquare(square)}

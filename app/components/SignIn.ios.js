@@ -42,7 +42,8 @@ class SignIn extends React.Component {
               return (
                 <Square
                   key={id}
-                  data={user}
+                  image={user.photo200}
+                  label={user.name}
                   onPress={this.generateHandlePressUser(user)}
                   style={styles.gridSquare}
                 />
