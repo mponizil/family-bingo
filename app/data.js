@@ -4,7 +4,7 @@ export let USERS = {};
 ['Ann', 'Bert','Dadla','Davia','Diane','Don','Eliana','Grant','Jan','Jill','Jim','Joey','John','Judy','Katie','Lark','Laurel','Linda','Mary','Misha','Owen','Rachel','Rick','Rob','Rose','Sarah','Sophie','Tommy','Zachary'].forEach((name, i) => {
   USERS[i] = {
     id: i,
-    photo: 'https://i.imgur.com/YCq1ofL.png',
+    photo: 'https://i.imgur.com/iPybbic.png',
     name: name
   };
 });

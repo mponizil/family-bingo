@@ -40,26 +40,38 @@ class Prompt extends React.Component {
 
     if (this.props.square.isMarked) {
       action = (
-        <TouchableOpacity onPress={this.props.onUnmark}>
-          <Text>Unmark</Text>
+        <TouchableOpacity onPress={this.props.onUnmark} style={styles.button}>
+          <Text style={styles.buttonText}>Unmark</Text>
         </TouchableOpacity>
       );
     } else {
       action = (
-        <TouchableOpacity onPress={this.props.onMarkDone}>
-          <Text>Done!</Text>
+        <TouchableOpacity onPress={this.props.onMarkDone} style={styles.button}>
+          <Text style={styles.buttonText}>Mark as done!</Text>
         </TouchableOpacity>
       );
     }
 
     return (
-      <View>
-        <Text>{this.props.user.name}</Text>
-        <Text>{PROMPTS[index]}</Text>
-        <TouchableOpacity onPress={this.props.onCancel}>
-          <Text>Cancel</Text>
-        </TouchableOpacity>
-        {action}
+      <View style={{width: 400}}>
+
+        <View style={styles.modalHeader}>
+          <Text style={{fontSize: 24}}>{this.props.user.name}</Text>
+        </View>
+
+        <View style={styles.modalBody}>
+          <Text style={{fontSize: 18}}>{PROMPTS[index]}</Text>
+        </View>
+
+        <View style={styles.modalFooter}>
+          <TouchableOpacity onPress={this.props.onCancel} style={[styles.buttonAlternate, {
+            marginRight: 10
+          }]}>
+            <Text style={styles.buttonAlternateText}>Cancel</Text>
+          </TouchableOpacity>
+          {action}
+        </View>
+
       </View>
     );
   }
@@ -88,6 +100,10 @@ class BingoBoard extends React.Component {
 
   generateHandlePressSquare(square) {
     return () => {
+      // Nothing happens when you press the free square
+      if (square.userId === -1) {
+        return;
+      }
       this.setState({
         showPrompt: true,
         promptSquare: square
@@ -144,8 +160,8 @@ class BingoBoard extends React.Component {
             <View style={styles.modalOverlay}>
               <View style={styles.modalContent}>
                 <Text>WINNER WINNER WINNER!!</Text>
-                <TouchableOpacity onPress={() => this.setState({ showWinner: false })}>
-                  <Text>Done</Text>
+                <TouchableOpacity onPress={() => this.setState({ showWinner: false })} style={styles.button}>
+                  <Text style={styles.buttonText}>Done</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -164,36 +180,40 @@ class BingoBoard extends React.Component {
             <View style={styles.navigationBarItem}></View>
           </View>
 
-          <ScrollView style={{flex: 0}} contentContainerStyle={styles.scrollViewContainer}>
-            {_.range(0, 5).map((i) => {
-              return (
-                <View key={i} style={styles.boardRow}>
-                  {this.props.board.slice(i * 5, (i + 1) * 5).map((square) => {
-                    var data;
-                    if (square.userId === -1) {
-                      data = {
-                        id: -1,
-                        name: 'Cake',
-                        photo: 'https://i.imgur.com/5KTpjld.png'
+          <ScrollView style={{flex: 1}} contentContainerStyle={[styles.scrollViewContainer, {
+            alignItems: 'center'
+          }]}>
+            <View style={{flex: 0, backgroundColor: '#e2e2e2', padding: 5}}>
+              {_.range(0, 5).map((i) => {
+                return (
+                  <View key={i} style={styles.boardRow}>
+                    {this.props.board.slice(i * 5, (i + 1) * 5).map((square) => {
+                      var data;
+                      if (square.userId === -1) {
+                        data = {
+                          id: -1,
+                          name: 'Cake',
+                          photo: 'https://i.imgur.com/5KTpjld.png'
+                        }
+                      } else {
+                        data = this.props.users[square.userId];
                       }
-                    } else {
-                      data = this.props.users[square.userId];
-                    }
-                    return (
-                      <Square
-                        key={square.userId}
-                        data={data}
-                        isMarked={square.isMarked}
-                        width={100}
-                        height={100}
-                        onPress={this.generateHandlePressSquare(square)}
-                        style={styles.boardSquare}
-                      />
-                    );
-                  })}
-                </View>
-              );
-            })}
+                      return (
+                        <Square
+                          key={square.userId}
+                          data={data}
+                          isMarked={square.isMarked}
+                          width={120}
+                          height={120}
+                          onPress={this.generateHandlePressSquare(square)}
+                          textStyle={{fontSize: 14}}
+                        />
+                      );
+                    })}
+                  </View>
+                );
+              })}
+            </View>
           </ScrollView>
 
           <View style={styles.instructions}>
@@ -208,7 +228,27 @@ class BingoBoard extends React.Component {
 }
 
 let styles = StyleSheet.create({
-  ...globalStyles
+  ...globalStyles,
+  modalHeader: {
+    backgroundColor: '#eaeaea',
+    padding: 10,
+    marginBottom: 10,
+    borderColor: '#c7c7c7',
+    borderBottomWidth: 1
+  },
+  modalBody: {
+    padding: 10,
+    marginBottom: 20
+  },
+  modalFooter: {
+    backgroundColor: '#eaeaea',
+    padding: 10,
+    borderColor: '#c7c7c7',
+    borderTopWidth: 1,
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+  }
 });
 
 export default connect((state, ownProps) => {

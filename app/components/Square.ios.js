@@ -19,7 +19,7 @@ class Square extends React.Component {
         <View style={styles.squareMark}>
           <Image
             source={{uri: 'https://i.imgur.com/hwp3ALu.png'}}
-            style={{width: 50, height: 50}}
+            style={{width: 80, height: 80}}
           />
         </View>
       );
@@ -27,7 +27,7 @@ class Square extends React.Component {
     return (
       <TouchableOpacity
         onPress={this.props.onPress}
-        style={this.props.style}
+        style={this.props.style || styles.square}
       >
         <Image
           source={{uri: this.props.data.photo}}
@@ -36,7 +36,13 @@ class Square extends React.Component {
             height: this.props.height || 200
           }}
         />
-        <Text style={styles.text}>{this.props.data.name}</Text>
+        <View style={[styles.squareLabel, {
+          width: this.props.width || 200
+        }]}>
+          <Text
+            style={[styles.squareLabelText, this.props.textStyle]}
+          >{this.props.data.name}</Text>
+        </View>
         {mark}
       </TouchableOpacity>
     );
