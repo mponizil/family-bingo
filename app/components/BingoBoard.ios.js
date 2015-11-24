@@ -159,11 +159,24 @@ class BingoBoard extends React.Component {
           </Overlay>
           <Overlay isVisible={this.state.showWinner}>
             <View style={styles.modalOverlay}>
-              <View style={styles.modalContent}>
-                <Text>WINNER WINNER WINNER!!</Text>
-                <TouchableOpacity onPress={() => this.setState({ showWinner: false })} style={styles.button}>
-                  <Text style={styles.buttonText}>Done</Text>
-                </TouchableOpacity>
+              <View style={[styles.modalContent, {
+                padding: 20,
+                backgroundColor: '#c09667',
+                alignItems: 'center'
+              }]}>
+                <Image
+                  source={{uri: 'https://i.imgur.com/XpKPN2r.png'}}
+                  style={{
+                    width: 949,
+                    height: 620,
+                    marginBottom: 20
+                  }}
+                />
+                <View style={{alignItems: 'center'}}>
+                  <TouchableOpacity onPress={() => this.setState({ showWinner: false })} style={styles.button}>
+                    <Text style={styles.buttonText}>Alright!!</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </Overlay>
