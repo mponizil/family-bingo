@@ -41,7 +41,7 @@ let styles = {
     paddingVertical: 10,
     backgroundColor: '#fbaf40',
     borderWidth: 1,
-    borderColor: '#91612c'
+    borderColor: '#d98727'
   },
   buttonText: {
     color: '#ffffff'
@@ -61,7 +61,7 @@ let styles = {
 
   square: {
     margin: 5,
-    borderColor: '#91612c',
+    borderColor: '#d98727',
     borderWidth: 1
   },
   squareLabel: {

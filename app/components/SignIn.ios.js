@@ -40,7 +40,7 @@ class SignIn extends React.Component {
             <Text style={styles.navigationBarItemText}>&lt; Back to Intro Screen</Text>
           </TouchableOpacity>
           <Text style={styles.navigationBarHeading}>
-            Select your photo to access your Bingo Board
+            Tap on your photo to pull up your Bingo board
           </Text>
           <View style={styles.navigationBarItem}></View>
         </View>
