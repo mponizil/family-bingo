@@ -22,7 +22,7 @@ import {
 
 import {
   PROMPTS,
-  CAKE120
+  DESSERT120
 } from '../data';
 
 import {
@@ -189,21 +189,21 @@ class BingoBoard extends React.Component {
                 return (
                   <View key={i} style={styles.boardRow}>
                     {this.props.board.slice(i * 5, (i + 1) * 5).map((square) => {
-                      var data;
+                      var user;
                       if (square.userId === -1) {
-                        data = {
+                        user = {
                           id: -1,
-                          name: 'Cake',
-                          photo120: CAKE120
+                          name: 'Free Square',
+                          photo120: _.sample(DESSERT120)
                         }
                       } else {
-                        data = this.props.users[square.userId];
+                        user = this.props.users[square.userId];
                       }
                       return (
                         <Square
                           key={square.userId}
-                          image={square.isMarked ? CAKE120 : data.photo120}
-                          label={data.name}
+                          image={square.isMarked ? square.markedImage : user.photo120}
+                          label={user.name}
                           width={120}
                           height={120}
                           onPress={this.generateHandlePressSquare(square)}
