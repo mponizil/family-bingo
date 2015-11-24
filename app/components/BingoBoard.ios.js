@@ -184,7 +184,7 @@ class BingoBoard extends React.Component {
           <ScrollView style={{flex: 1}} contentContainerStyle={[styles.scrollViewContainer, {
             alignItems: 'center'
           }]}>
-            <View style={{flex: 0, backgroundColor: '#e2e2e2', padding: 5}}>
+            <View style={{flex: 0, padding: 5}}>
               {_.range(0, 5).map((i) => {
                 return (
                   <View key={i} style={styles.boardRow}>
@@ -216,10 +216,6 @@ class BingoBoard extends React.Component {
               })}
             </View>
           </ScrollView>
-
-          <View style={styles.instructions}>
-            <Text style={styles.instructionsText}>Instructions</Text>
-          </View>
 
         </View>
       </View>

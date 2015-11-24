@@ -2,14 +2,15 @@ let styles = {
 
   screen: {
     flex: 1,
+    backgroundColor: '#c09667',
     justifyContent: 'space-between'
   },
 
   navigationBar: {
-    backgroundColor: '#e2e2e2',
+    backgroundColor: '#fbaf40',
     padding: 5,
     paddingTop: 25,
-    borderColor: '#cbcbcb',
+    borderColor: '#d98727',
     borderStyle: 'solid',
     borderBottomWidth: 1,
     flexDirection: 'row',
@@ -21,12 +22,14 @@ let styles = {
     flexDirection: 'row'
   },
   navigationBarItemText: {
-    fontSize: 14
+    fontSize: 14,
+    color: '#ffffff'
   },
   navigationBarHeading: {
     flex: 1,
     fontSize: 24,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#ffffff'
   },
 
   scrollViewContainer: {
@@ -36,7 +39,9 @@ let styles = {
   button: {
     paddingHorizontal: 20,
     paddingVertical: 10,
-    backgroundColor: '#e4a100'
+    backgroundColor: '#fbaf40',
+    borderWidth: 1,
+    borderColor: '#91612c'
   },
   buttonText: {
     color: '#ffffff'
@@ -56,7 +61,7 @@ let styles = {
 
   square: {
     margin: 5,
-    borderColor: '#bcbcbc',
+    borderColor: '#91612c',
     borderWidth: 1
   },
   squareLabel: {
@@ -139,9 +144,7 @@ export default {
   buttonAlternate: {
     ...styles.button,
     backgroundColor: '#ffffff',
-    borderWidth: 1,
-    borderColor: '#dadada',
-    borderStyle: 'solid'
+    borderColor: '#dadada'
   },
   buttonAlternateText: {
     color: '#000000'

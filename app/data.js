@@ -14,7 +14,8 @@ export const DESSERT120 = [
   'https://i.imgur.com/aU0bUhf.png',
   'https://i.imgur.com/QuQ0moH.png',
   'https://i.imgur.com/J4zMYjk.png',
-  'https://i.imgur.com/RHQCLao.png'
+  'https://i.imgur.com/RHQCLao.png',
+  'https://i.imgur.com/OvHRqDA.png'
 ];
 
 export let USERS = {};

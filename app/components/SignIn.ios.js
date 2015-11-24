@@ -33,7 +33,17 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <View style={[styles.screen, {paddingTop: 20}]}>
+      <View style={styles.screen}>
+
+        <View style={styles.navigationBar}>
+          <TouchableOpacity onPress={this.props.navigator.pop} style={styles.navigationBarItem}>
+            <Text style={styles.navigationBarItemText}>&lt; Back to Intro Screen</Text>
+          </TouchableOpacity>
+          <Text style={styles.navigationBarHeading}>
+            Select your photo to access your Bingo Board
+          </Text>
+          <View style={styles.navigationBarItem}></View>
+        </View>
 
         <ScrollView style={{flex: 1}} contentContainerStyle={styles.scrollViewContainer}>
           <View style={styles.grid}>
@@ -51,12 +61,6 @@ class SignIn extends React.Component {
             })}
           </View>
         </ScrollView>
-
-        <View style={styles.instructions}>
-          <Text style={styles.instructionsText}>
-            Hello, welcome to Thanksgiving! This here is Family Bingo, the game where you have to have real conversations with your family members in order to win a ticket for dessert. Find and select your photo to get started!
-          </Text>
-        </View>
 
       </View>
     );

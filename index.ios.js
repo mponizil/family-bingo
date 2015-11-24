@@ -10,7 +10,7 @@ import {
   Provider
 } from 'react-redux/native';
 
-import SignIn from './app/components/SignIn';
+import Welcome from './app/components/Welcome';
 
 let {
   AppRegistry,
@@ -42,7 +42,7 @@ class FamilyBingo extends React.Component {
             renderScene={this.renderScene.bind(this)}
             configureScene={(route) => route.transition || Navigator.SceneConfigs.FloatFromRight}
             initialRoute={{
-              component: SignIn
+              component: Welcome
             }}
           />
         }
