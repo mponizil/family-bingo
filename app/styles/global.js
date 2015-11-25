@@ -49,7 +49,8 @@ let styles = {
   },
 
   text: {
-    fontSize: 16
+    fontSize: 20,
+    marginBottom: 5
   },
 
   square: {

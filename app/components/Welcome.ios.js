@@ -22,16 +22,17 @@ class Welcome extends React.Component {
 
   render() {
     return (
-      <View style={[styles.screen, {flex: 1, justifyContent: 'space-around', alignItems: 'center', paddingVertical: 20, paddingHorizontal: 60}]}>
+      <View style={[styles.screen, {flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingVertical: 60, paddingHorizontal: 60}]}>
         <Image
           source={{uri: 'https://i.imgur.com/MpBpC8V.png'}}
           style={{
             width: 949,
-            height: 225
+            height: 225,
+            marginBottom: 40
           }}
         />
-        <View>
-          <Text style={styles.heading}>Come enjoy this years Thanksgiving app (itizer). Play Family Bingo and win your tickets for dessert. Let’s get started!</Text>
+        <View style={{marginBottom: 40}}>
+          <Text style={styles.heading}>Come enjoy this years Thanksgiving <Text style={{fontStyle: 'italic', color: '#571f1f', textDecorationLine: 'underline'}}>app</Text> (itizer). Play Family Bingo and win your tickets for dessert. Let’s get started!</Text>
           <Text style={styles.text}>Here's how to play:</Text>
           <Text style={styles.text}>1) Tap on your picture to sign in. You’ll get your own unique Bingo board, filled with family photos.</Text>
           <Text style={styles.text}>2) When you tap on a photo you'll see a question.</Text>
@@ -53,7 +54,7 @@ class Welcome extends React.Component {
 let styles = StyleSheet.create({
   ...globalStyles,
   heading: {
-    fontSize: 24,
+    fontSize: 32,
     color: '#ffffff',
     marginBottom: 10
   },

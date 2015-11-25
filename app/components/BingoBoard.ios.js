@@ -172,16 +172,16 @@ class BingoBoard extends React.Component {
                 alignItems: 'center'
               }]}>
                 <Image
-                  source={{uri: 'https://i.imgur.com/XpKPN2r.png'}}
+                  source={{uri: 'https://i.imgur.com/6W1WnqP.png'}}
                   style={{
                     width: 949,
-                    height: 620,
-                    marginBottom: 20
+                    height: 590,
+                    marginBottom: 40
                   }}
                 />
                 <View style={{alignItems: 'center'}}>
                   <TouchableOpacity onPress={() => this.setState({ showWinner: false })} style={styles.button}>
-                    <Text style={styles.buttonText}>Alright!!</Text>
+                    <Text style={styles.buttonText}>OK, back to my board to win more coupons!</Text>
                   </TouchableOpacity>
                 </View>
               </View>
