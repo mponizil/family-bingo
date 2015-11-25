@@ -58,6 +58,13 @@ class Prompt extends React.Component {
 
         <View style={styles.modalHeader}>
           <Text style={{fontSize: 24}}>{this.props.user.name}</Text>
+          <View>
+            {this.props.user.taglines.map((tagline) => {
+              return (
+                <Text style={{fontSize: 14, color: '#626262'}}>{tagline}</Text>
+              );
+            })}
+          </View>
         </View>
 
         <View style={styles.modalBody}>
@@ -194,41 +201,54 @@ class BingoBoard extends React.Component {
             <View style={styles.navigationBarItem}></View>
           </View>
 
-          <ScrollView style={{flex: 1}} contentContainerStyle={[styles.scrollViewContainer, {
-            alignItems: 'center'
-          }]}>
-            <View style={{flex: 0, padding: 5}}>
-              {_.range(0, 5).map((i) => {
-                return (
-                  <View key={i} style={styles.boardRow}>
-                    {this.props.board.slice(i * 5, (i + 1) * 5).map((square) => {
-                      var user;
-                      if (square.userId === -1) {
-                        user = {
-                          id: -1,
-                          name: 'Free Square',
-                          photo120: _.sample(DESSERT120)
-                        }
-                      } else {
-                        user = this.props.users[square.userId];
-                      }
-                      return (
-                        <Square
-                          key={square.userId}
-                          image={square.isMarked ? square.markedImage : user.photo120}
-                          label={user.name}
-                          width={120}
-                          height={120}
-                          onPress={this.generateHandlePressSquare(square)}
-                          textStyle={{fontSize: 14}}
-                        />
-                      );
-                    })}
-                  </View>
-                );
-              })}
+          <View style={{flex: 1, flexDirection: 'row'}}>
+
+            <View style={{flex: 0.3, backgroundColor: '#eaeaea', padding: 10, borderColor: '#c7c7c7', borderBottomWidth: 1}}>
+              <Text style={styles.text}>When you tap on a photo you'll see a question.</Text>
+              <Text style={styles.text}>Find the person in the photo and ask them the question.</Text>
+              <Text style={styles.text}>Come back and check off the photo.</Text>
+              <Text style={styles.text}>When you get 5 in a row, you get a coupon for dessert! Each time you complete a row, you get another dessert ticket. No tickets, no dessert!</Text>
             </View>
-          </ScrollView>
+
+            <View style={{flex: 0.7, paddingHorizontal: 20}}>
+              <ScrollView style={{flex: 1}} contentContainerStyle={[styles.scrollViewContainer, {
+                alignItems: 'center'
+              }]}>
+                <View style={{flex: 0, padding: 5}}>
+                  {_.range(0, 5).map((i) => {
+                    return (
+                      <View key={i} style={styles.boardRow}>
+                        {this.props.board.slice(i * 5, (i + 1) * 5).map((square) => {
+                          var user;
+                          if (square.userId === -1) {
+                            user = {
+                              id: -1,
+                              name: 'Free Square',
+                              photo120: _.sample(DESSERT120)
+                            }
+                          } else {
+                            user = this.props.users[square.userId];
+                          }
+                          return (
+                            <Square
+                              key={square.userId}
+                              image={square.isMarked ? square.markedImage : user.photo120}
+                              label={user.name}
+                              width={120}
+                              height={120}
+                              onPress={this.generateHandlePressSquare(square)}
+                              textStyle={{fontSize: 14}}
+                            />
+                          );
+                        })}
+                      </View>
+                    );
+                  })}
+                </View>
+              </ScrollView>
+            </View>
+
+          </View>
 
         </View>
       </View>
@@ -239,6 +259,10 @@ class BingoBoard extends React.Component {
 
 let styles = StyleSheet.create({
   ...globalStyles,
+  text: {
+    ...globalStyles.text,
+    marginBottom: 10
+  },
   modalHeader: {
     backgroundColor: '#eaeaea',
     padding: 10,

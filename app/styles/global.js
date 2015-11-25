@@ -44,19 +44,12 @@ let styles = {
     borderColor: '#d98727'
   },
   buttonText: {
-    color: '#ffffff'
+    color: '#ffffff',
+    fontSize: 18
   },
 
-  instructions: {
-    padding: 15,
-    backgroundColor: '#e2e2e2',
-    borderColor: '#cbcbcb',
-    borderStyle: 'solid',
-    borderTopWidth: 1
-  },
-  instructionsText: {
-    color: '#181818',
-    fontSize: 18
+  text: {
+    fontSize: 16
   },
 
   square: {
@@ -147,6 +140,7 @@ export default {
     borderColor: '#dadada'
   },
   buttonAlternateText: {
+    ...styles.buttonText,
     color: '#000000'
   }
 

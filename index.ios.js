@@ -15,7 +15,10 @@ import Welcome from './app/components/Welcome';
 let {
   AppRegistry,
   Navigator,
+  StatusBarIOS
 } = React;
+
+StatusBarIOS.setStyle('light-content');
 
 import configureStore from './app/configureStore';
 let store = configureStore();

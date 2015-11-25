@@ -58,7 +58,7 @@ let styles = StyleSheet.create({
     marginBottom: 10
   },
   text: {
-    fontSize: 16,
+    ...globalStyles.text,
     color: '#ffffff'
   }
 });
