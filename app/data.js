@@ -1,7 +1,7 @@
 import _ from 'underscore';
 
 export const PROMPTS = [
-  "What did/do you want to be growing up?",
+  "What do you want to be when you grow up?",
   "Tell me the story of a first date OR (if you haven't had a first date) what would you like to do?",
   "Have you ever done anything illegal?",
   "Tell me about an adventure from your life.",
