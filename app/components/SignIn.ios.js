@@ -55,11 +55,11 @@ class SignIn extends React.Component {
                   <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Text style={styles.squareLabelText}>{this.props.boards[id].bingoCount}</Text>
                     <Image
-                      source={{uri: 'https://i.imgur.com/BXWTpJK.png'}}
+                      source={{uri: 'https://i.imgur.com/Uhmvq52.png'}}
                       style={{
                         marginLeft: 5,
-                        width: 40,
-                        height: 40
+                        width: 24,
+                        height: 22
                       }}
                     />
                   </View>
