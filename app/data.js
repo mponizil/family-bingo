@@ -2,7 +2,7 @@ import _ from 'underscore';
 
 export const PROMPTS = [
   "What do you want to be when you grow up?",
-  "Tell me the story of a first date OR (if you haven't had a first date) what would you like to do?",
+  "Tell me the story of a first date OR if you haven't had a first date what would you like to do on a first date?",
   "Have you ever done anything illegal?",
   "Tell me about an adventure from your life.",
   "What's something you did this past year that you're proud of?",
@@ -10,7 +10,7 @@ export const PROMPTS = [
   "When you're alone, do you ever make funny faces in the mirror?",
   "What would your ideal job look like?",
   "What's your favorite activity?",
-  "Do you feel like your family persona is different from your friends persona? If so, in what way?",
+  "Do you feel like your persona with family is different from your persona with friends? If so, in what way?",
   "If you had a super power, what would it be?",
   "If you could time travel, where would you go and what would you do?",
   "Are there any TV shows that you like (or liked)?",
