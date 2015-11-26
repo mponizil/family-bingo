@@ -32,7 +32,7 @@ class Welcome extends React.Component {
           }}
         />
         <View style={{marginBottom: 40}}>
-          <Text style={styles.heading}>Come enjoy this years Thanksgiving <Text style={{fontStyle: 'italic', color: '#571f1f', textDecorationLine: 'underline'}}>app</Text> (itizer). Play Family Bingo and win your tickets for dessert. Let’s get started!</Text>
+          <Text style={styles.heading}>Come enjoy this years Thanksgiving <Text style={{fontStyle: 'italic', color: '#571f1f', textDecorationLine: 'underline'}}>app</Text> (itizer). Play Family Bingo and win your tickets for dessert. Let's get started!</Text>
           <Text style={styles.text}>Here's how to play:</Text>
           <Text style={styles.text}>1) Tap on your picture to sign in. You’ll get your own unique Bingo board, filled with family photos.</Text>
           <Text style={styles.text}>2) When you tap on a photo you'll see a question.</Text>
