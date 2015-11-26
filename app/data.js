@@ -2,9 +2,9 @@ import _ from 'underscore';
 
 export const PROMPTS = [
   "What did/do you want to be growing up?",
-  "Tell me the story of a first date OR (if you haven't had a first date?) what would do?",
+  "Tell me the story of a first date OR (if you haven't had a first date) what would do?",
   "Have you ever done anything illegal?",
-  "Tell me about an adventure from your life",
+  "Tell me about an adventure from your life.",
   "What's something you did this past year that you're proud of?",
   "If you had to eat one kind of food for every meal, what would you choose?",
   "When you're alone, do you ever make funny faces in the mirror?",
@@ -74,16 +74,20 @@ export let USERS = {};
 export let BOARDS = {};
 Object.keys(USERS).forEach((id) => {
   let others = _.without(Object.keys(USERS), id);
-  BOARDS[id] = _.sample(others, 24).map((id) => {
+  let squares = _.sample(others, 24).map((id) => {
     return {
       userId: id,
       isMarked: false,
       markedImage: _.sample(DESSERT120)
     };
   });
-  BOARDS[id].splice(12, 0, {
+  squares.splice(12, 0, {
     userId: -1,
     isMarked: true,
     markedImage: _.sample(DESSERT120)
   });
+  BOARDS[id] = {
+    bingoCount: 0,
+    squares: squares
+  };
 });

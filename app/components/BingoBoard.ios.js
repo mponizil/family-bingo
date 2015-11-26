@@ -25,10 +25,6 @@ import {
   DESSERT120
 } from '../data';
 
-import {
-  checkHasBingo
-} from '../utility';
-
 import Square from './Square';
 
 import globalStyles from '../styles/global';
@@ -59,9 +55,9 @@ class Prompt extends React.Component {
         <View style={styles.modalHeader}>
           <Text style={{fontSize: 24}}>{this.props.user.name}</Text>
           <View>
-            {this.props.user.taglines.map((tagline) => {
+            {this.props.user.taglines.map((tagline, i) => {
               return (
-                <Text style={{fontSize: 14, color: '#626262'}}>{tagline}</Text>
+                <Text key={i} style={{fontSize: 14, color: '#626262'}}>{tagline}</Text>
               );
             })}
           </View>
@@ -91,7 +87,6 @@ class BingoBoard extends React.Component {
   constructor() {
     super();
     this.state = {
-      hasBingo: false,
       showWinner: false,
       showPrompt: false,
       promptSquare: null,
@@ -99,10 +94,8 @@ class BingoBoard extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let hasBingo = checkHasBingo(nextProps.board);
     this.setState({
-      hasBingo: hasBingo,
-      showWinner: (this.state.hasBingo !== hasBingo) ? hasBingo : false
+      showWinner: this.props.board.bingoCount < nextProps.board.bingoCount
     });
   }
 
@@ -150,6 +143,23 @@ class BingoBoard extends React.Component {
           onUnmark={this.handleUnmarkSquare.bind(this)}
           onMarkDone={this.handleMarkSquare.bind(this)}
         />
+      );
+    }
+
+    let winningStatus;
+    if (this.props.board.bingoCount > 0) {
+      winningStatus = (
+        <Text style={styles.text}>
+          You've won{' '}
+          {this.props.board.bingoCount}
+          {' '}dessert coupon{this.props.board.bingoCount === 1 ? '' : 's'}!
+        </Text>
+      );
+    } else {
+      winningStatus = (
+        <Text style={styles.text}>
+          You haven't won any dessert coupons yet. Keep playing!
+        </Text>
       );
     }
 
@@ -204,10 +214,24 @@ class BingoBoard extends React.Component {
           <View style={{flex: 1, flexDirection: 'row'}}>
 
             <View style={{flex: 0.3, backgroundColor: '#eaeaea', padding: 10, borderColor: '#c7c7c7', borderBottomWidth: 1}}>
-              <Text style={styles.text}>When you tap on a photo you'll see a question.</Text>
-              <Text style={styles.text}>Find the person in the photo and ask them the question.</Text>
-              <Text style={styles.text}>Come back and check off the photo.</Text>
-              <Text style={styles.text}>When you get 5 in a row, you get a coupon for dessert! Each time you complete a row, you get another dessert ticket. No tickets, no dessert!</Text>
+              <View style={{marginBottom: 20}}>
+                <Text style={styles.text}>When you tap on a photo you'll see a question.</Text>
+                <Text style={styles.text}>Find the person in the photo and ask them the question.</Text>
+                <Text style={styles.text}>Come back and check off the photo.</Text>
+                <Text style={styles.text}>When you get 5 in a row, you get a coupon for dessert! Each time you complete a row, you get another dessert ticket. No tickets, no dessert!</Text>
+              </View>
+              <View>
+                <Image
+                  source={{uri: 'https://i.imgur.com/kdb9gF4.png'}}
+                  style={{
+                    alignSelf: 'center',
+                    width: 200,
+                    height: 125,
+                    marginBottom: 20
+                  }}
+                />
+                <Text style={styles.text}>{winningStatus}</Text>
+              </View>
             </View>
 
             <View style={{flex: 0.7, paddingHorizontal: 20}}>
@@ -218,7 +242,7 @@ class BingoBoard extends React.Component {
                   {_.range(0, 5).map((i) => {
                     return (
                       <View key={i} style={styles.boardRow}>
-                        {this.props.board.slice(i * 5, (i + 1) * 5).map((square) => {
+                        {this.props.board.squares.slice(i * 5, (i + 1) * 5).map((square) => {
                           var user;
                           if (square.userId === -1) {
                             user = {

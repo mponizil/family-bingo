@@ -1,4 +1,6 @@
-export function checkHasBingo(board) {
+export function getBingoCount(board) {
+  let count = 0;
+
   // Horizontal
   function checkRow(row) {
     for (let i = row * 5; i < (row + 1) * 5; i++) {
@@ -11,7 +13,7 @@ export function checkHasBingo(board) {
 
   for (let i = 0; i < 5; i++) {
     if (checkRow(i)) {
-      return true;
+      count++;
     }
   }
 
@@ -27,7 +29,7 @@ export function checkHasBingo(board) {
 
   for (let i = 0; i < 5; i++) {
     if (checkColumn(i)) {
-      return true;
+      count++;
     }
   }
 
@@ -41,7 +43,7 @@ export function checkHasBingo(board) {
     return true;
   }
   if (checkDiagonalL2R()) {
-    return true;
+    count++;
   }
 
   // Diagonal right to left
@@ -54,8 +56,8 @@ export function checkHasBingo(board) {
     return true;
   }
   if (checkDiagonalR2L()) {
-    return true;
+    count++;
   }
 
-  return false;
+  return count;
 }
