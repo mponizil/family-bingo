@@ -253,11 +253,16 @@ class BingoBoard extends React.Component {
                           } else {
                             user = this.props.users[square.userId];
                           }
+                          let label = (
+                            <Text style={[styles.squareLabelText, {fontSize: 14}]}>
+                              {user.name}
+                            </Text>
+                          );
                           return (
                             <Square
                               key={square.userId}
                               image={square.isMarked ? square.markedImage : user.photo120}
-                              label={user.name}
+                              label={label}
                               width={120}
                               height={120}
                               onPress={this.generateHandlePressSquare(square)}

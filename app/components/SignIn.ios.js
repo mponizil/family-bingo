@@ -49,11 +49,27 @@ class SignIn extends React.Component {
           <View style={styles.grid}>
             {Object.keys(this.props.users).map((id) => {
               let user = this.props.users[id];
+              let label = (
+                <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                  <Text style={styles.squareLabelText}>{user.name}</Text>
+                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Text style={styles.squareLabelText}>{this.props.boards[id].bingoCount}</Text>
+                    <Image
+                      source={{uri: 'https://i.imgur.com/BXWTpJK.png'}}
+                      style={{
+                        marginLeft: 5,
+                        width: 40,
+                        height: 40
+                      }}
+                    />
+                  </View>
+                </View>
+              );
               return (
                 <Square
                   key={id}
                   image={user.photo200}
-                  label={user.name}
+                  label={label}
                   onPress={this.generateHandlePressUser(user)}
                   style={styles.gridSquare}
                 />
@@ -69,11 +85,16 @@ class SignIn extends React.Component {
 }
 
 let styles = StyleSheet.create({
-  ...globalStyles
+  ...globalStyles,
+  squareLabelText: {
+    ...globalStyles.squareLabelText,
+    textAlign: 'left'
+  }
 });
 
 export default connect((state) => {
   return {
-    users: state.users
+    users: state.users,
+    boards: state.boardsByUser
   };
 })(SignIn);

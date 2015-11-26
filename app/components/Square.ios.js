@@ -28,9 +28,7 @@ class Square extends React.Component {
         <View style={[styles.squareLabel, {
           width: this.props.width || 200
         }]}>
-          <Text
-            style={[styles.squareLabelText, this.props.textStyle]}
-          >{this.props.label}</Text>
+          {this.props.label}
         </View>
       </TouchableOpacity>
     );
